@@ -58,7 +58,7 @@
                                 <br />
 
                                 <div>
-                                    <h1>Sistema </h1>
+                                    <h1>Sistema de Luna Azul</h1>
 
                                 </div>
                             </div>

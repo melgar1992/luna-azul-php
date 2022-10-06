@@ -37,7 +37,7 @@ class Usuario_model extends CI_Model
         $this->db->join('roles r', 'r.id_roles = u.id_roles');
         $this->db->where('u.estado', '1');
         $this->db->where('r.estado', '1');
-        $this->db->where('u.id_usuario', $id_usuario);
+        $this->db->where('u.id_usuarios', $id_usuario);
         $resultado = $this->db->get()->row_array();
 
         if (isset($resultado)) {
@@ -48,12 +48,12 @@ class Usuario_model extends CI_Model
     }
     public function actualizar($id_usuario, $datos)
     {
-        $this->db->where('id_usuario', $id_usuario);
+        $this->db->where('id_usuarios', $id_usuario);
         return $this->db->update('usuarios', $datos);
     }
     public function borrar($id_usuario, $datos)
     {
-        $this->db->where('id_usuario', $id_usuario);
+        $this->db->where('id_usuarios', $id_usuario);
         return $this->db->update('usuarios', $datos);
     }
 

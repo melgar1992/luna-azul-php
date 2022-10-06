@@ -6,7 +6,7 @@ $(document).ready(function () {
         pageLength: 25,
         ajax: { url: base_url + "Usuarios/obtenerUsuariosAjax", dataSrc: "" },
         columns: [
-            { data: 'id_usuario' },
+            { data: 'id_usuarios' },
             { data: 'nombre_completo' },
             { data: 'ci' },
             { data: 'nombre' },
@@ -101,14 +101,14 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (respuesta) {
                     if (respuesta['respuesta'] === 'Exitoso') {
-                        id_usuario = respuesta['datos']['id_usuario'];
+                        id_usuario = respuesta['datos']['id_usuarios'];
                         nombre_completo = respuesta['datos']['nombre_completo'];
                         ci = respuesta['datos']['ci'];
                         nombre = respuesta['datos']['nombre'];
                         username = respuesta['datos']['username'];
                         telefono = respuesta['datos']['telefono'];
                         tabla.row.add({
-                            "id_usuario": id_usuario,
+                            "id_usuarios": id_usuario,
                             "nombre_completo": nombre_completo,
                             "ci": ci,
                             "nombre": nombre,
@@ -147,14 +147,14 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (respuesta) {
                     if (respuesta['respuesta'] === 'Exitoso') {
-                        id_usuario = respuesta['datos']['id_usuario'];
+                        id_usuario = respuesta['datos']['id_usuarios'];
                         nombre_completo = respuesta['datos']['nombre_completo'];
                         ci = respuesta['datos']['ci'];
                         nombre = respuesta['datos']['nombre'];
                         username = respuesta['datos']['username'];
                         telefono = respuesta['datos']['telefono'];
                         tabla.row(fila).data({
-                            "id_usuario": id_usuario,
+                            "id_usuarios": id_usuario,
                             "nombre_completo": nombre_completo,
                             "ci": ci,
                             "nombre": nombre,

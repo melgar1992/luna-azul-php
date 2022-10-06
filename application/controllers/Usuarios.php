@@ -55,7 +55,6 @@ class Usuarios extends BaseController
                     'telefono' => $telefono,
                     'username' => $username,
                     'password' => $this->encryption->encrypt($password),
-                    'fecha_ingreso' => date('Y-m-d'),
                     'estado' => '1',
                 );
                 $id_usuario = $this->Usuario_model->guardarUsuario($datosUsuario);
@@ -151,7 +150,6 @@ class Usuarios extends BaseController
         $datos = array(
             'username' => '',
             'estado' => '0',
-            'fecha_salida' => date('Y-m-d'),
         );
         $this->Usuario_model->borrar($id_usuarios, $datos);
         $respuesta = array(

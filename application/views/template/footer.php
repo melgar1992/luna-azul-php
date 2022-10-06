@@ -31,7 +31,8 @@
         <script src="<?php echo base_url(); ?>application/assets/template/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="<?php echo base_url(); ?>application/assets/template/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 
-
+        <!-- Sweet Alert -->
+        <script src="<?php echo base_url(); ?>application/assets/template/sweetalert2/sweetalert2.all.min.js"></script>
 
         <!-- Custom Theme Scripts -->
         <script src="<?php echo base_url(); ?>application/assets/template/build/js/custom.min.js"></script>

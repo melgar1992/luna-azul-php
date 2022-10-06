@@ -11,7 +11,7 @@
     <title>Login! | </title>
 
     <!-- Bootstrap -->
-    <link href="<?php echo base_url(); ?>application/assets/template/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>application/assets/template/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?php echo base_url(); ?>application/assets/template/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->

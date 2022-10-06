@@ -12,7 +12,7 @@
         <!-- jQuery -->
         <script src="<?php echo base_url(); ?>application/assets/template/jquery/jquery.min.js"></script>
         <!-- Bootstrap -->
-        <script src="<?php echo base_url(); ?>application/assets/template/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="<?php echo base_url(); ?>application/assets/template/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- FastClick -->
         <script src="<?php echo base_url(); ?>application/assets/template/fastclick/fastclick.js"></script>
         <!-- NProgress -->

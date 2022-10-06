@@ -44,7 +44,7 @@
                                         <table class="table table-striped table-bordered nowrap" id="tablaUsuarios" style="width:100%">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>id</th>
                                                     <th>Nombre</th>
                                                     <th>CI</th>
                                                     <th>Rol</th>

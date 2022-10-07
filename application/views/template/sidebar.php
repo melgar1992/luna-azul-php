@@ -14,16 +14,23 @@
 
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <?php //if ($this->session->userdata('permisos')['dashboard'] == '1') : ?>
+                                <?php //if ($this->session->userdata('permisos')['dashboard'] == '1') : 
+                                ?>
 
-                                    <li><a><i class="fa fa-bar-chart"></i> Dashboard <span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li><a href="<?php echo base_url() ?>">Dashboard principal</a></li>
+                                <li><a><i class="fa fa-bar-chart"></i> Dashboard <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="<?php echo base_url() ?>">Dashboard principal</a></li>
 
-                                        </ul>
-                                    </li>
-                                <?php // endif; ?>
+                                    </ul>
+                                </li>
+                                <?php // endif; 
+                                ?>
+                                <li><a><i class="fa fa-shopping-cart"></i>Productos <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="<?php echo base_url(); ?>Categorias">Categorias</a></li>
 
+                                    </ul>
+                                </li>
                                 <li><a><i class="fa fa-users"></i>Usuarios <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="<?php echo base_url(); ?>Usuarios">Usuarios</a></li>

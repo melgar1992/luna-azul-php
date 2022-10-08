@@ -10,8 +10,15 @@ class Categoria extends BaseController
     public function index()
     {
         $data = array(
-            'categorias' => $this->Categoria_model->obtener_categorias(),
+            // 'categorias' => $this->Categoria_model->obtener_categorias(),
         );
-        $this->loadView('Categoria', 'formulario/categoria/categoria_form', $data);
+        $this->loadView('Categoria', 'formularios/categoria/categoria_form', $data);
     }
+
+    public function obtenerCategoriasAjax()
+    {
+        $categorias = $this->Categoria_model->obtener_categorias();
+        echo json_encode($categorias);
+    }
+
 }

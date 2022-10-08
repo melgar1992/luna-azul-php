@@ -27,7 +27,7 @@
                                 ?>
                                 <li><a><i class="fa fa-shopping-cart"></i>Productos <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="<?php echo base_url(); ?>Categorias">Categorias</a></li>
+                                        <li><a href="<?php echo base_url(); ?>Categoria">Categorias</a></li>
 
                                     </ul>
                                 </li>

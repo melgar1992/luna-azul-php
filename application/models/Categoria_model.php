@@ -12,7 +12,7 @@ class Categoria_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->where('id_categorias', $id_categoria);
-        return $this->db->get()->row_array();
+        return $this->db->get('categorias')->row_array();
     }
 
     public function ingresar_categoria($datos_categoria)
@@ -24,7 +24,7 @@ class Categoria_model extends CI_Model
     public function editar_categoria($id_categoria, $datos_categoria)
     {
         $this->db->where('id_categorias', $id_categoria);
-        $this->db->update('categorias', $datos_categoria);
+        return $this->db->update('categorias', $datos_categoria);
     }
 
     public function eliminar_categoria($id_categoria)
@@ -33,6 +33,6 @@ class Categoria_model extends CI_Model
             'nombre' => '',
             'estado' => 0
         );
-        $this->editar_categoria($id_categoria, $datos);
+        return $this->editar_categoria($id_categoria, $datos);
     }
 }

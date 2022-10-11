@@ -10,7 +10,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Categorias</h2>
+                        <h2>Productos</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -60,7 +60,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Formulario Categoria</h4>
+                <h4 class="modal-title">Formulario Producto</h4>
             </div>
             <form action="" id="formulario">
                 <div class="modal-body">
@@ -68,7 +68,7 @@
                     <div class="error_formulario">
                     </div>
                     <div class="form-group">
-                        <label class="control-label" for="nombre">Nombre de la categoria <span class="required">*</span>
+                        <label class="control-label" for="nombre">Nombre<span class="required">*</span>
                         </label>
                         <div class="">
                             <input type="text" id="nombre" onkeyup="mayus(this);" minlength="0" maxlength="45" name="nombre" required="required" class="form-control col-md-7 col-xs-12">

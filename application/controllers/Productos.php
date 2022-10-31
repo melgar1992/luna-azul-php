@@ -16,19 +16,18 @@ class Productos extends BaseController
     }
     public function subirImagenes()
     {
-        $file = $_FILES;
-        $config['upload_path']          = './imgs/productos';
+        $config['upload_path']          = './application/imgs/productos/';
         $config['allowed_types']        = 'jpg|png|jpeg';
-        $config['max_size']             = 100000;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
+        $config['max_size']             = 100;
+        $config['max_width']            = 2000;
+        $config['max_height']           = 2000;
 
-        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
         if (!$this->upload->do_upload('userfile')) {
             $error = array('error' => $this->upload->display_errors());
             $respuesta = array(
                 'respuesta' => 'Error',
-                'mensaje' => 'Ocurrio un problema',
+                'mensaje' => $error,
             );
         } else {
             $data = array('upload_data' => $this->upload->data());

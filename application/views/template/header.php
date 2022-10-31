@@ -29,4 +29,6 @@ if (!$this->session->userdata('login')) {
   <!-- DataTables-->
   <link rel="stylesheet" href="<?php echo base_url(); ?>application/assets/template/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>application/assets/template/datatables.net-responsive-bs/css/responsive.bootstrap.min.css">
+  <!-- DroopZone-->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>application/assets/template/dropzone/dist/min/dropzone.min.css">
 </head>

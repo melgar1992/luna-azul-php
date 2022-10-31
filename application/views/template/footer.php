@@ -33,7 +33,8 @@
 
         <!-- Sweet Alert -->
         <script src="<?php echo base_url(); ?>application/assets/template/sweetalert2/sweetalert2.all.min.js"></script>
-
+        <!-- Dropzone -->
+        <script src="<?php echo base_url(); ?>application/assets/template/dropzone/dist/dropzone.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="<?php echo base_url(); ?>application/assets/template/build/js/custom.min.js"></script>
         <input type="hidden" value="<?php echo base_url() ?>" id="base_url">

@@ -63,33 +63,55 @@
                 <h4 class="modal-title">Formulario Producto</h4>
             </div>
             <form action="" id="formulario">
-                <div class="modal-body">
-                    <p>Los campos con * son obligatorios</p>
-                    <div class="error_formulario">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label" for="nombre">Nombre<span class="required">*</span>
-                        </label>
-                        <div class="">
-                            <input type="text" id="nombre" onkeyup="mayus(this);" minlength="0" maxlength="45" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="descripcion" class="control-label">descripcion
-                        </label>
-                        <div class="">
-                            <textarea name="descripcion" id="descripcion" class="form-control" rows="2" placeholder="descripcion breve de la categoria"></textarea>
-                        </div>
-                    </div>
-
+            <div class="modal-body">
+                <p>Los campos con * son obligatorios</p>
+                <div class="error_formulario">
                 </div>
-                <br>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger pull-left" id="btn-cerrar" data-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-success pull-right" id="btn-guardar">Guardar</button>
-                    <button class="btn btn-primary pull-right" type="reset">Borrar</button>
+                <div class="form-group">
+                    <label for="id_categorias" class="control-label">Categoria *:</label>
+                    <div class="">
+                        <select id="id_categorias" name="id_categorias" class="form-control" required>
+                            <option value=""></option>
+                            <?php foreach ($categorias as $row) : ?>
+                                <option value="<?php echo $row['id_categorias'] ?>"><?php echo $row['nombre']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label" for="codigo">codigo<span class="required">*</span>
+                    </label>
+                    <div class="">
+                        <input type="text" id="codigo" minlength="0" maxlength="20" name="codigo" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="nombre">Nombre<span class="required">*</span>
+                    </label>
+                    <div class="">
+                        <input type="text" id="nombre" minlength="0" maxlength="45" name="nombre" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion" class="control-label">descripcion
+                    </label>
+                    <div class="">
+                        <textarea name="descripcion" id="descripcion" class="form-control" rows="2" placeholder="descripcion breve de la categoria"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="imagenes_productos" class="control-label">Imagen del producto
+                        <!-- <form action="/application/assets/imagenes/" class="dropzone dz-clickable" id="imagenes_productos">
+                        </form> -->
+                        <div class="dropzone" id="imagenes_productos"></div>
+                </div>
+
+            </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-left" id="btn-cerrar" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-success pull-right" id="btn-guardar">Guardar</button>
+            </div>
             </form>
         </div>
 

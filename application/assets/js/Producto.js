@@ -5,10 +5,16 @@ $(document).ready(function () {
     $("#imagenes_productos").dropzone({
         url: base_url + "Productos/subirImagenes",
         addRemoveLinks: true,
-        autoProcessQueue: true,
+        autoProcessQueue: false,
         paramName: 'userfile',
+        maxFiles: 5,
         init: function () {
-
+            var myDropzone = this;
+            $('#formulario').submit(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                myDropzone.processQueue();
+            });
         },
         success: function (file, response) {
             var imgName = response;

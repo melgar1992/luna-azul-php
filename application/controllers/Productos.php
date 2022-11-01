@@ -18,7 +18,8 @@ class Productos extends BaseController
     {
         $config['upload_path']          = './application/imgs/productos/';
         $config['allowed_types']        = 'jpg|png|jpeg';
-        $config['max_size']             = 100;
+        $config['file_name']            =  rand(1,50000000);
+        $config['max_size']             = 1000;
         $config['max_width']            = 2000;
         $config['max_height']           = 2000;
 

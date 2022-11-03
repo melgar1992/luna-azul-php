@@ -14,6 +14,10 @@ class Productos extends BaseController
         );
         $this->loadView('Producto', 'formularios/producto/producto_form', $data);
     }
+    public function ingresarProductos()
+    {
+        
+    }
     public function subirImagenes()
     {
         $config['upload_path']          = './application/imgs/productos/';

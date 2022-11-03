@@ -78,13 +78,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="control-label" for="codigo">codigo<span class="required">*</span>
                     </label>
                     <div class="">
                         <input type="text" id="codigo" minlength="0" maxlength="20" name="codigo" required="required" class="form-control col-md-7 col-xs-12">
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label class="control-label" for="nombre">Nombre<span class="required">*</span>
                     </label>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="imagenes_productos" class="control-label">Imagen del producto
+                    <label for="imagenes_productos" class="control-label">Imagen del producto </label>
                         <!-- <form action="/application/assets/imagenes/" class="dropzone dz-clickable" id="imagenes_productos">
                         </form> -->
                         <div class="dropzone" id="imagenes_productos"></div>

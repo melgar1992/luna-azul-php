@@ -31,10 +31,11 @@
                             <div class="x_panel">
                                 <div class="x_content">
                                     <div class="card-box table-responsive">
-                                        <table class="table table-striped table-bordered nowrap" id="tablaCategorias" style="width:100%">
+                                        <table class="table table-striped table-bordered nowrap" id="tablaProductos" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>Nombre</th>
+                                                    <th>Categoria</th>
                                                     <th>Descripcion</th>
                                                     <th style="max-width: 150px; min-width: 150px;">Acciones</th>
                                                 </tr>

@@ -6,6 +6,8 @@ class Categoria_model extends CI_Model
     {
         $this->db->select("*");
         $this->db->where('estado', '1');
+        $this->db->order_by('id_categorias', 'desc');
+        $this->db->limit(100);
         return $this->db->get('categorias')->result_array();
     }
     public function obtener_categoria($id_categoria)

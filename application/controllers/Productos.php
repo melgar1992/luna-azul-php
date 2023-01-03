@@ -10,19 +10,67 @@ class Productos extends BaseController
     public function index()
     {
         $data = array(
-            'categorias' => $this->Categoria_model->obtener_categorias(),
+            // 'categorias' => $this->Producto_model->obtener_productos(),
         );
         $this->loadView('Producto', 'formularios/producto/producto_form', $data);
     }
-    public function ingresarProductos()
+    public function obtenerProductosAjax()
     {
-        
+        $productos = $this->Producto_model->obtener_productos();
+        echo json_encode($productos);
     }
+    public function ingresarProducto()
+    {
+        $nombre = $this->input->post('nombre');
+        $descripcion = $this->input->post('descripcion');
+        $id_categorias = $this->input->post('id_categorias');
+        $files = $this->input->post('files');
+        $this->form_validation->set_rules("nombre", "nombre", "required|is_unique[nombre]");
+        $this->form_validation->set_rules("id_categorias", "id_categorias", "required");
+
+        // $files2 = json_decode($files[0], true);
+        try {
+            if ($this->form_validation->run() === false) {
+                $respuesta = array(
+                    'respuesta' => 'Error',
+                    'mensaje' => $this->form_validation->error_array(),
+                );
+            } else {
+                $datosProducto = array(
+                    'nombre' => $nombre,
+                    'descripcion' => $descripcion,
+                    'id_categorias' => $id_categorias,
+                    'estado' => '1',
+                );
+                $id_producto = $this->Producto_model->ingresar_producto($datosProducto);
+                if ($id_producto) {
+                    $datosProducto += ['id_producto' => $id_producto];
+                    $respuesta = array(
+                        'respuesta' => 'Exitoso',
+                        'datos' => $datosProducto,
+                        'mensaje' => 'Se guardo correctamente',
+                    );
+                } else {
+                    $respuesta = array(
+                        'respuesta' => 'Error',
+                        'mensaje' => 'Ocurrio un problema al ingresar los datos base de datos',
+                    );
+                }
+            }
+        } catch (Exception  $th) {
+            $respuesta = array(
+                'respuesta' => 'Error',
+                'mensaje' => 'Ocurrio un problema' + $th->getMessage(),
+            );
+        }
+        echo json_encode($respuesta);
+    }
+ 
     public function subirImagenes()
     {
         $config['upload_path']          = './application/imgs/productos/';
         $config['allowed_types']        = 'jpg|png|jpeg';
-        $config['file_name']            =  rand(1,50000000);
+        $config['file_name']            = '';
         $config['max_size']             = 1000;
         $config['max_width']            = 2000;
         $config['max_height']           = 2000;

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     opcion = '';
-    document.title = 'Luna Azul| Productos';
+    document.title = 'Luna Azul | Productos';
     Dropzone.autoDiscover = false;
     var imagenes = new Array;
     var tabla = $('#tablaProductos').DataTable({
@@ -8,11 +8,17 @@ $(document).ready(function () {
         pageLength: 25,
         ajax: { url: base_url + "Productos/obtenerProductosAjax", dataSrc: "" },
         columns: [
+            {
+                data: 'imagen',
+                render: function (data) {
+                    return '<a href="' + data + '"></a>';
+                }
+            },
             { data: 'nombre' },
             {data: 'categoria'},
             { data: 'descripcion' },
             {
-                data: 'id_categorias',
+                data: 'id_procuto',
                 render: function (data) {
                     return "<div class='text-right'> <div class='btn-group'><button class='btn btn-warning btn-sm' value='" + data + "' id='btn-editar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btn-sm' value='" + data + "' id='btn-borrar'><i class='fas fa-trash-alt'></i> Borrar</button></div></div>";
                 }
@@ -75,11 +81,10 @@ $(document).ready(function () {
             });
         },
     });
-    $('#btn-guardar').submit(function (e) {
-        e.preventDefault();
-        console.log('Entro!!');
-    });
-
+    // $('#btn-guardar').submit(function (e) {
+    //     e.preventDefault();
+    //     console.log('Entro!!');
+    // });
     function guardarProducto(files) {
         console.log('Entro a guardar producto');
         id_categorias = $.trim($('#id_categorias').val());
@@ -98,7 +103,21 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (respuesta) {
                     if (respuesta['respuesta'] === 'Exitoso') {
-                        console.log(respuesta);
+                        id_producto = respuesta['datos']['id_producto'];
+                        categoria = respuesta['datos']['categoria'];
+                        nombre = respuesta['datos']['nombre'];
+                        descripcion = respuesta['datos']['descripcion'];
+                        tabla.row.add({
+                            "nombre": nombre,
+                            "descripcion": descripcion,
+                            "categoria": categoria,
+                        }).draw();
+                        swal({
+                            title: 'Guardar',
+                            text: respuesta['mensaje'],
+                            type: 'success'
+                        });
+                        LimpiarFormulario();
 
                     } else {
                         swal({

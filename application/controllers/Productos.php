@@ -10,7 +10,7 @@ class Productos extends BaseController
     public function index()
     {
         $data = array(
-            // 'categorias' => $this->Producto_model->obtener_productos(),
+            'categorias' => $this->Categoria_model->obtener_categorias(),
         );
         $this->loadView('Producto', 'formularios/producto/producto_form', $data);
     }
@@ -25,7 +25,7 @@ class Productos extends BaseController
         $descripcion = $this->input->post('descripcion');
         $id_categorias = $this->input->post('id_categorias');
         $files = $this->input->post('files');
-        $this->form_validation->set_rules("nombre", "nombre", "required|is_unique[nombre]");
+        $this->form_validation->set_rules("nombre", "nombre", "required|is_unique[productos.nombre]");
         $this->form_validation->set_rules("id_categorias", "id_categorias", "required");
 
         // $files2 = json_decode($files[0], true);
@@ -44,7 +44,9 @@ class Productos extends BaseController
                 );
                 $id_producto = $this->Producto_model->ingresar_producto($datosProducto);
                 if ($id_producto) {
+                    $categoria = $this->Categoria_model->obtener_categoria($id_categorias);
                     $datosProducto += ['id_producto' => $id_producto];
+                    $datosProducto += ['categoria' => $categoria['nombre']];
                     $respuesta = array(
                         'respuesta' => 'Exitoso',
                         'datos' => $datosProducto,

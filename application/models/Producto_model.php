@@ -4,12 +4,13 @@ class Producto_model extends CI_Model
 
     public function obtener_productos()
     {
-        $this->db->select("*,ca.nombre as categoria");
-        $this->db->join('categorias ca', 'ca.id_categorias = productos.id_categorias');
-        $this->db->where('productos.estado', '1');
+        $this->db->select("p.*,ca.nombre as categoria, im.url as imagen");
+        $this->db->join('categorias ca', 'ca.id_categorias = p.id_categorias');
+        $this->db->join('imagenes im', 'im.id_producto = p.id_producto','left');
+        $this->db->where('p.estado', '1');
         $this->db->order_by('id_producto', 'desc');
         $this->db->limit(100);
-        return $this->db->get('productos')->result_array();
+        return $this->db->get('productos p')->result_array();
     }
 
     public function obtener_producto($id_produto)

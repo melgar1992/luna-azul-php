@@ -16,6 +16,7 @@ class Productos extends BaseController
     }
     public function obtenerProductosAjax()
     {
+        
         $productos = $this->Producto_model->obtener_productos();
         echo json_encode($productos);
     }
@@ -44,7 +45,19 @@ class Productos extends BaseController
                 );
                 $id_producto = $this->Producto_model->ingresar_producto($datosProducto);
                 if ($id_producto) {
+                    //se guardan las urls de las imagenes subidas
+                    for ($i = 0; $i < count($files); $i++) {
+                        $datos = json_decode($files[$i], true);
+                        $datos_imagen = array(
+                            'id_producto' => $id_producto,
+                            'url' => $datos['data']['upload_data']['file_name'],
+                        );
+                        $this->Imagen_model->ingresar_imagen($datos_imagen);
+                    }
+                    $primera_imagen = json_decode($files[0], true);
+                    // se procede a guardar los datos del producto
                     $categoria = $this->Categoria_model->obtener_categoria($id_categorias);
+                    $datosProducto += ['imagen' => $primera_imagen['data']['upload_data']['file_name']];
                     $datosProducto += ['id_producto' => $id_producto];
                     $datosProducto += ['categoria' => $categoria['nombre']];
                     $respuesta = array(
@@ -67,7 +80,6 @@ class Productos extends BaseController
         }
         echo json_encode($respuesta);
     }
- 
     public function subirImagenes()
     {
         $config['upload_path']          = './application/imgs/productos/';
@@ -92,6 +104,22 @@ class Productos extends BaseController
                 'data' => $data
             );
         }
+        echo json_encode($respuesta);
+    }
+    public function borrar($id_producto)
+    {
+        if ($this->Producto_model->eliminar_producto($id_producto)) {
+            $respuesta = array(
+                'respuesta' => 'Exitoso',
+                'message' => 'Se elimino la categoria'
+            );
+        } else {
+            $respuesta = array(
+                'respuesta' => 'Error',
+                'message' => 'Ups ocurrio un error'
+            );
+        }
+
         echo json_encode($respuesta);
     }
 }

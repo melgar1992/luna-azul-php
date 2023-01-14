@@ -4,9 +4,9 @@ class Producto_model extends CI_Model
 
     public function obtener_productos()
     {
-        $this->db->select("p.*,ca.nombre as categoria, im.url as imagen");
+        $this->db->select("p.*,ca.nombre as categoria, 
+        (select img.url  from imagenes img where img.id_producto = p.id_producto limit 1 ) as imagen");
         $this->db->join('categorias ca', 'ca.id_categorias = p.id_categorias');
-        $this->db->join('imagenes im', 'im.id_producto = p.id_producto','left');
         $this->db->where('p.estado', '1');
         $this->db->order_by('id_producto', 'desc');
         $this->db->limit(100);
@@ -28,6 +28,7 @@ class Producto_model extends CI_Model
     {
         $this->db->where('id_producto', $id_producto);
         return $this->db->update('productos', $datos_producto);
+        $this->imagen_model->eliminar_imagen_producto($id_producto);
     }
     public function eliminar_producto($id_producto)
     {

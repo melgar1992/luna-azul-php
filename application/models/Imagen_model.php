@@ -40,7 +40,8 @@ class Imagen_model extends CI_Model
         $this->db->where('id_producto', $id_producto);
         $imagenes_path = $this->db->get('imagenes')->result_array();
         foreach ($imagenes_path as $imagen) {
-            unlink($imagen['url']);
+            $url = "application/imgs/productos/" . $imagen['url'];
+            unlink($url);
         }
         $this->db->where('id_producto', $id_producto);
         return $this->db->delete('imagenes');

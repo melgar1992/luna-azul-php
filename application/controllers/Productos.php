@@ -16,9 +16,15 @@ class Productos extends BaseController
     }
     public function obtenerProductosAjax()
     {
-        
+
         $productos = $this->Producto_model->obtener_productos();
         echo json_encode($productos);
+    }
+    public function obtenerProductoAjax()
+    {
+        $id_producto = $this->input->post('id_producto');
+        $producto = $this->Producto_model->obtener_producto($id_producto);
+        echo json_encode($producto);
     }
     public function ingresarProducto()
     {

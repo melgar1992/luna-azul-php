@@ -13,10 +13,10 @@ class Producto_model extends CI_Model
         return $this->db->get('productos p')->result_array();
     }
 
-    public function obtener_producto($id_produto)
+    public function obtener_producto($id_producto)
     {
         $this->db->select('*');
-        $this->db->where('id_produto', $id_produto);
+        $this->db->where('id_producto', $id_producto);
         return $this->db->get('productos')->row_array();
     }
     public function ingresar_producto($datos_producto)
@@ -36,6 +36,7 @@ class Producto_model extends CI_Model
             'nombre' => '',
             'estado' => 0
         );
+        $this->Imagen_model->eliminar_imagen_producto($id_producto);
         return $this->editar_producto($id_producto, $datos);
     }
 }

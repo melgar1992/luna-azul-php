@@ -58,13 +58,47 @@ $(document).ready(function () {
                 e.stopPropagation();
                 myDropzone.processQueue();
             });
+            $(document).on("click", '#btn-editar', function () {
+                console.log('Entro a editar desde dropzone');
+                fila = $(this).closest('tr');
+                id_producto = this.value;
+                $('.modal-title').text('Editar Producto');
+                $('#password').removeAttr('required');
+                $('#modal-form').modal('show');
+                $.ajax({
+                    type: "post",
+                    url: "Productos/obtenerImagenesProducto",
+                    data: { id_producto: id_producto },
+                    dataType: "json",
+                    success: function (imagenes) {
+                        imagenes.forEach(imagen => {
+                            var mockFile = { name: imagen.name, size: 2000 };
+                            myDropzone.emit("addedfile", mockFile);
+                            myDropzone.emit("thumbnail", mockFile, imagen.path);
+                            // myDropzone.emit("complete", mockFile);
+                        });
+                    }
+                });
+
+                // $.ajax({
+                //     type: "POST",
+                //     url: base_url + "Productos/obtenerProductoAjax",
+                //     data: {
+                //         id_producto: id_producto
+                //     },
+                //     dataType: "json",
+                //     success: function (respuesta) {
+                //         $("#id_categorias option[value=" + respuesta['id_categorias'] + "]").attr("selected", true);
+                //         $('#nombre').val(respuesta['nombre']);
+                //         $('#descripcion').text(respuesta['descripcion']);
+                //     }
+                // });
+                opcion = 'editar';
+            });
             this.on("success", function (file, response) {
                 // var imgName = response;
                 imagenes.push(response);
                 file.previewElement.classList.add("dz-success");
-                // console.log("Successfully uploaded :" + imgName);
-                // console.log(imagenes);
-                // guardarProducto(imgName);
             });
             this.on('errormultiple', function (file, response) {
                 var error = response;
@@ -72,9 +106,7 @@ $(document).ready(function () {
                 console.log('entro al error' + error);
             });
             this.on("queuecomplete", function (file, response) {
-                // this.removeAllFiles(true);
-                // console.log('entro! succes multiple');
-                // console.log(imagenes);
+                this.removeAllFiles(true);
                 guardarProducto(imagenes);
                 imagenes = [];
             });
@@ -85,27 +117,27 @@ $(document).ready(function () {
         LimpiarFormulario();
     });
     //Botton editar cargo
-    $(document).on("click", '#btn-editar', function () {
-        fila = $(this).closest('tr');
-        id_producto = this.value;
-        $('.modal-title').text('Editar Producto');
-        $('#password').removeAttr('required');
-        $('#modal-form').modal('show');
-        $.ajax({
-            type: "POST",
-            url: base_url + "Productos/obtenerProductoAjax",
-            data: {
-                id_producto: id_producto
-            },
-            dataType: "json",
-            success: function (respuesta) {
-                $("#id_categorias option[value=" + respuesta['id_categorias'] + "]").attr("selected", true);
-                $('#nombre').val(respuesta['nombre']);
-                $('#descripcion').text(respuesta['descripcion']);
-            }
-        });
-        opcion = 'editar';
-    });
+    // $(document).on("click", '#btn-editar', function () {
+    //     fila = $(this).closest('tr');
+    //     id_producto = this.value;
+    //     $('.modal-title').text('Editar Producto');
+    //     $('#password').removeAttr('required');
+    //     $('#modal-form').modal('show');
+    //     $.ajax({
+    //         type: "POST",
+    //         url: base_url + "Productos/obtenerProductoAjax",
+    //         data: {
+    //             id_producto: id_producto
+    //         },
+    //         dataType: "json",
+    //         success: function (respuesta) {
+    //             $("#id_categorias option[value=" + respuesta['id_categorias'] + "]").attr("selected", true);
+    //             $('#nombre').val(respuesta['nombre']);
+    //             $('#descripcion').text(respuesta['descripcion']);
+    //         }
+    //     });
+    //     opcion = 'editar';
+    // });
     function guardarProducto(files) {
         // console.log('Entro a guardar producto');
         id_categorias = $.trim($('#id_categorias').val());
@@ -258,3 +290,15 @@ function LimpiarFormulario() {
     $('#formulario').trigger('reset');
     opcion = '';
 };
+function obtenerImagenes(id_producto) {
+    $.ajax({
+        type: "post",
+        url: "Productos/obtenerImagenesProducto",
+        data: { id_producto: id_producto },
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            return response;
+        }
+    });
+}

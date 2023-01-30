@@ -31,4 +31,8 @@ if (!$this->session->userdata('login')) {
   <link rel="stylesheet" href="<?php echo base_url(); ?>application/assets/template/datatables.net-responsive-bs/css/responsive.bootstrap.min.css">
   <!-- DroopZone-->
   <link rel="stylesheet" href="<?php echo base_url(); ?>application/assets/template/dropzone/dist/min/dropzone.min.css">
+  <!-- Estilos personales -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>application/assets/css/app.css">
+
+
 </head>

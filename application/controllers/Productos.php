@@ -128,4 +128,33 @@ class Productos extends BaseController
 
         echo json_encode($respuesta);
     }
+    public function obtenerImagenesProducto()
+    {
+
+        $lista_imagenes = array();
+
+        $id_producto = $this->input->post('id_producto');
+
+        $imagenespath = $this->Imagen_model->obtener_imagenes_producto($id_producto);
+
+        //Carpeta destino
+
+        $dir = base_url() . "application/imgs/productos/";
+
+        //Leer Archivos
+
+        foreach ($imagenespath as $imagen) {
+
+            $path = $dir . $imagen['url'];
+
+            // $size = filesize($path);
+            // $size = get_file_info($path);
+
+            $lista_imagenes[] = array('name' => $imagen['url'], 'size' => 0, 'path' => $path);
+        }
+
+
+
+        echo json_encode($lista_imagenes);
+    }
 }

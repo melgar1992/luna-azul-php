@@ -58,13 +58,18 @@ $(document).ready(function () {
                 e.stopPropagation();
                 myDropzone.processQueue();
             });
+            // limpiar al cerrar
+            $(document).on('hidden.bs.modal', '#modal-form', function () {
+                myDropzone.removeAllFiles(true);
+                LimpiarFormulario();
+            });
+            myDropzone.on('addedfile', file => {
+                console.log(file);
+            });
             $(document).on("click", '#btn-editar', function () {
                 console.log('Entro a editar desde dropzone');
                 fila = $(this).closest('tr');
                 id_producto = this.value;
-                $('.modal-title').text('Editar Producto');
-                $('#password').removeAttr('required');
-                $('#modal-form').modal('show');
                 $.ajax({
                     type: "post",
                     url: "Productos/obtenerImagenesProducto",
@@ -79,20 +84,22 @@ $(document).ready(function () {
                         });
                     }
                 });
-
-                // $.ajax({
-                //     type: "POST",
-                //     url: base_url + "Productos/obtenerProductoAjax",
-                //     data: {
-                //         id_producto: id_producto
-                //     },
-                //     dataType: "json",
-                //     success: function (respuesta) {
-                //         $("#id_categorias option[value=" + respuesta['id_categorias'] + "]").attr("selected", true);
-                //         $('#nombre').val(respuesta['nombre']);
-                //         $('#descripcion').text(respuesta['descripcion']);
-                //     }
-                // });
+                $.ajax({
+                    type: "POST",
+                    url: base_url + "Productos/obtenerProductoAjax",
+                    data: {
+                        id_producto: id_producto
+                    },
+                    dataType: "json",
+                    success: function (respuesta) {
+                        $("#id_categorias option[value=" + respuesta['id_categorias'] + "]").attr("selected", true);
+                        $('#nombre').val(respuesta['nombre']);
+                        $('#descripcion').text(respuesta['descripcion']);
+                    }
+                });
+                $('.modal-title').text('Editar Producto');
+                $('#password').removeAttr('required');
+                $('#modal-form').modal('show');
                 opcion = 'editar';
             });
             this.on("success", function (file, response) {
@@ -112,10 +119,7 @@ $(document).ready(function () {
             });
         },
     });
-    // limpiar al cerrar
-    $('#modal-form').on('hidden.bs.modal', function () {
-        LimpiarFormulario();
-    });
+
     //Botton editar cargo
     // $(document).on("click", '#btn-editar', function () {
     //     fila = $(this).closest('tr');
@@ -237,7 +241,6 @@ $(document).ready(function () {
         }
 
     }
-
     //Eliminar button
     $(document).on('click', '#btn-borrar', function () {
         Swal.fire({
